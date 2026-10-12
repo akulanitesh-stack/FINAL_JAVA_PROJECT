@@ -1,0 +1,234 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<meta name="genspark-artifact-type" content="poster">
+<title>Personal Fitness Tracker — Project Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;height:100%;background:transparent;overflow:hidden}
+  :root{
+    --ink:#16191c; --mute:#5b6168; --line:#dfe3e6; --paper:#fbfbfa; --panel:#f2f4f4;
+    --acc:oklch(0.56 0.12 190); --acc-soft:oklch(0.95 0.03 190); --acc-deep:oklch(0.40 0.09 200);
+    --code:#14201f;
+  }
+  .poster-canvas{position:fixed;top:50%;left:50%;width:1760px;height:2489px;transform-origin:center center;overflow:hidden;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif}
+  .decor{pointer-events:none}
+  .hero-img{position:absolute;top:0;right:0;width:1100px;height:600px;object-fit:cover;object-position:center}
+  .hero-fade{position:absolute;top:0;right:0;width:1100px;height:600px;background:linear-gradient(90deg,var(--paper) 0%,rgba(251,251,250,.85) 22%,rgba(251,251,250,0) 60%),linear-gradient(0deg,var(--paper) 0%,rgba(251,251,250,0) 30%)}
+  .composition{position:absolute;inset:0;display:flex;flex-direction:column;padding:52px 72px 52px;gap:24px}
+
+  /* header */
+  .top{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .top b{color:var(--acc-deep);font-weight:600}
+  .title-block{width:860px;margin-top:10px}
+  .title-block h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:108px;line-height:.9;letter-spacing:-.035em;margin:0}
+  .title-block h1 span{color:var(--acc)}
+  .title-block p{font-size:28px;line-height:1.4;color:var(--mute);margin:22px 0 0;max-width:720px;text-wrap:pretty}
+  .team{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+  .chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:12px 22px;font-size:22px;font-weight:600;display:flex;gap:12px;align-items:baseline}
+  .chip i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:19px;color:var(--mute)}
+
+  /* section heads */
+  .sh{display:flex;align-items:center;gap:14px;font-family:'Archivo',sans-serif;font-weight:800;font-size:34px;letter-spacing:-.01em;margin:0 0 18px}
+  .sh .n{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:18px;color:#fff;background:var(--acc);border-radius:6px;padding:5px 10px;letter-spacing:.06em}
+  .body{font-size:22px;line-height:1.5;color:#2b3035;text-wrap:pretty;margin:0}
+
+  .row1{display:grid;grid-template-columns:600px 1fr;gap:40px;margin-top:6px}
+  .abstract .body+.body{margin-top:14px}
+  .kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .kw span{font-family:'IBM Plex Mono',monospace;font-size:17px;background:var(--acc-soft);color:var(--acc-deep);padding:6px 12px;border-radius:6px}
+
+  /* architecture */
+  .arch-box{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:22px 26px}
+  .tier{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+  .tier-l{font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);line-height:1.3}
+  .nodes{display:flex;gap:12px}
+  .node{flex:1;border:1.5px solid var(--ink);border-radius:10px;padding:8px 10px;text-align:center;background:#fff}
+  .node b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:18px}
+  .node small{display:block;font-size:15px;color:var(--mute);margin-top:2px}
+  .node.acc{background:var(--acc);border-color:var(--acc);color:#fff}
+  .node.acc small{color:rgba(255,255,255,.85)}
+  .node.soft{background:var(--acc-soft);border-color:var(--acc)}
+  .node.dash{border-style:dashed;border-color:#c0392b;}
+  .node.dash b{color:#a93226}
+  .arrow{display:grid;grid-template-columns:150px 1fr;gap:18px;height:24px}
+  .arrow div{position:relative}
+  .arrow div+div::before{content:"";position:absolute;left:50%;top:3px;bottom:9px;width:2px;background:var(--ink);transform:translateX(-50%)}
+  .arrow div+div::after{content:"";position:absolute;left:50%;bottom:2px;border:7px solid transparent;border-top:9px solid var(--ink);border-bottom:0;transform:translateX(-50%)}
+  .arrow div span{position:absolute;left:calc(50% + 14px);top:4px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--mute)}
+  .arch-foot{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);display:flex;gap:26px;font-size:16px;color:var(--mute)}
+  .arch-foot span::before{content:"";display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:8px;vertical-align:-2px;border:1.5px solid var(--ink)}
+  .arch-foot .l2::before{background:var(--acc);border-color:var(--acc)}
+  .arch-foot .l3::before{background:var(--acc-soft);border-color:var(--acc)}
+  .arch-foot .l4::before{border-style:dashed;border-color:#c0392b}
+
+  /* CO grid */
+  .co-head{display:flex;justify-content:space-between;align-items:flex-end}
+  .co-head .sh{margin:0}
+  .co-head p{margin:0;font-family:'IBM Plex Mono',monospace;font-size:17px;color:var(--mute)}
+  .co-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px;margin-top:-12px}
+  .co{grid-column:span 2;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:20px 22px 20px;display:flex;flex-direction:column}
+  .co.wide{grid-column:span 3}
+  .co-tag{display:flex;align-items:baseline;gap:12px}
+  .co-tag em{font-style:normal;font-family:'Archivo',sans-serif;font-weight:900;font-size:42px;color:var(--acc);letter-spacing:-.03em;line-height:1}
+  .co-tag h3{margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:25px;line-height:1.1}
+  .co ul{margin:12px 0 14px;padding-left:20px;font-size:18.5px;line-height:1.4;color:#2b3035}
+  .co li{margin-bottom:2px}
+  .co li::marker{color:var(--acc)}
+  pre{margin:auto 0 0;background:var(--code);color:#d9e6e4;border-radius:12px;padding:13px 16px;font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.45;white-space:pre;overflow:hidden}
+  pre .k{color:#7fd3c8} pre .c{color:#7d8f8c} pre .s{color:#f2c98a} pre .t{color:#9fc1ff}
+
+  /* bottom */
+  .row3{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .fs-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin:0;padding:0;list-style:none}
+  .fs-list li{font-size:18px;line-height:1.35;padding:11px 14px;background:var(--panel);border-radius:12px}
+  .fs-list li b{display:block;font-family:'Archivo',sans-serif;font-size:20px;margin-bottom:2px}
+  .concl{background:var(--acc-deep);color:#fff;border-radius:18px;padding:24px 30px}
+  .concl .body{font-size:20.5px}
+  .concl .sh .n{background:#fff;color:var(--acc-deep)}
+  .concl .body{color:rgba(255,255,255,.92)}
+  .concl .body+.body{margin-top:14px}
+
+  .footer{margin-top:auto;display:flex;justify-content:space-between;border-top:1.5px solid var(--ink);padding-top:18px;font-family:'IBM Plex Mono',monospace;font-size:17px;color:var(--mute);letter-spacing:.06em}
+</style>
+</head><body>
+<div class="poster-canvas">
+  <img data-layer-id="hero" data-layer-type="image" data-layer-name="Hero image" class="hero-img" src="assets/hero.png" alt="">
+  <div data-layer-id="hero-fade" data-layer-type="html" data-layer-name="Hero fade" class="decor hero-fade"></div>
+
+  <div class="composition">
+    <header data-layer-id="top-strip" data-layer-type="html" data-layer-name="Top strip" class="top">
+      <span><b>Project Poster</b> · Object-Oriented Programming in Java</span>
+    </header>
+
+    <div data-layer-id="title-block" data-layer-type="html" data-layer-name="Title">
+      <div class="title-block">
+        <h1>Personal Fitness<br><span>Tracker</span></h1>
+        <p>A Java application that logs workouts, tracks calories and goals, and turns daily activity into clear weekly progress.</p>
+        <div class="team">
+          <div class="chip">Nitesh <i>2620040068</i></div>
+          <div class="chip">Pavan <i>2620080067</i></div>
+          <div class="chip">Ashwith <i>2620090003</i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row1">
+      <section data-layer-id="abstract" data-layer-type="html" data-layer-name="Abstract" class="abstract">
+        <h2 class="sh"><span class="n">01</span>Abstract</h2>
+        <p class="body">Most people exercise without a simple record of what they did or whether they are improving. The Personal Fitness Tracker is a menu-driven Java program where a user registers a profile, logs workouts (running, cycling, strength), records daily steps and sets goals.</p>
+        <p class="body">The system calculates calories burned and BMI, summarises weekly totals, ranks best sessions and saves everything to files so data survives between runs. Invalid input is caught and handled, so the program never crashes on bad data.</p>
+        <div class="kw"><span>Java SE</span><span>OOP</span><span>Inheritance</span><span>Exceptions</span><span>Collections</span><span>File I/O</span></div>
+      </section>
+
+      <section data-layer-id="architecture" data-layer-type="html" data-layer-name="Architecture diagram">
+        <h2 class="sh"><span class="n">02</span>System Architecture</h2>
+        <div class="arch-box">
+          <div class="tier"><div class="tier-l">Presentation</div>
+            <div class="nodes"><div class="node"><b>User</b><small>keyboard input</small></div><div class="node"><b>ConsoleMenu</b><small>Scanner · printf</small></div></div></div>
+          <div class="arrow"><div></div><div><span>choice / data</span></div></div>
+          <div class="tier"><div class="tier-l">Control</div>
+            <div class="nodes"><div class="node acc"><b>FitnessApp</b><small>main() · do-while loop · switch dispatch</small></div></div></div>
+          <div class="arrow"><div></div><div><span>method calls</span></div></div>
+          <div class="tier"><div class="tier-l">Services</div>
+            <div class="nodes"><div class="node soft"><b>WorkoutService</b><small>add · list · search</small></div><div class="node soft"><b>StatsEngine</b><small>totals · BMI · recursion</small></div><div class="node soft"><b>GoalTracker</b><small>targets · progress %</small></div></div></div>
+          <div class="arrow"><div></div><div><span>creates / updates</span></div></div>
+          <div class="tier"><div class="tier-l">Model</div>
+            <div class="nodes"><div class="node"><b>User</b><small>profile</small></div><div class="node"><b>Workout</b><small>abstract · calories()</small></div><div class="node"><b>Running · Cycling · Strength</b><small>extends Workout</small></div><div class="node dash"><b>InvalidInput­Exception</b><small>fail-safe guard</small></div></div></div>
+          <div class="arrow"><div></div><div><span>read / write CSV</span></div></div>
+          <div class="tier"><div class="tier-l">Persistence</div>
+            <div class="nodes"><div class="node"><b>FileManager</b><small>BufferedReader / Writer</small></div><div class="node"><b>workouts.csv · user.txt</b><small>stored data</small></div></div></div>
+          <div class="arch-foot"><span>I/O &amp; data</span><span class="l2">Controller</span><span class="l3">Service logic</span><span class="l4">Exception handling</span></div>
+        </div>
+      </section>
+    </div>
+
+    <div data-layer-id="co-section" data-layer-type="html" data-layer-name="CO-wise implementation">
+      <div class="co-head"><h2 class="sh"><span class="n">03</span>CO-wise Implementation</h2><p>Course outcomes mapped to project features</p></div>
+    </div>
+
+    <div class="co-grid" style="flex:1">
+      <article data-layer-id="co1" data-layer-type="html" data-layer-name="CO1" class="co">
+        <div class="co-tag"><em>CO1</em><h3>From Problem<br>to Program</h3></div>
+        <ul><li>Problem defined: no easy way to track fitness</li><li>Input → Process → Output design</li><li>Variables, data types, operators for BMI &amp; calories</li></ul>
+<pre><span class="c">// BMI from user input</span>
+<span class="t">double</span> h = sc.nextDouble() / <span class="s">100</span>;
+<span class="t">double</span> bmi = weight / (h * h);
+System.out.printf(<span class="s">"BMI: %.1f%n"</span>, bmi);</pre>
+      </article>
+
+      <article data-layer-id="co2" data-layer-type="html" data-layer-name="CO2" class="co">
+        <div class="co-tag"><em>CO2</em><h3>Control<br>Flow</h3></div>
+        <ul><li>Menu loop with <code>do-while</code></li><li><code>switch</code> to dispatch options</li><li><code>if-else</code> to classify BMI and goal status</li></ul>
+<pre><span class="k">do</span> {
+  choice = sc.nextInt();
+  <span class="k">switch</span> (choice) {
+    <span class="k">case</span> <span class="s">1</span> -> logWorkout();
+    <span class="k">case</span> <span class="s">2</span> -> showStats();
+  }
+} <span class="k">while</span> (choice != <span class="s">0</span>);</pre>
+      </article>
+
+      <article data-layer-id="co3" data-layer-type="html" data-layer-name="CO3" class="co">
+        <div class="co-tag"><em>CO3</em><h3>Methods, Recursion<br>&amp; Arrays</h3></div>
+        <ul><li>Modular methods per feature</li><li><code>int[7]</code> array stores a week of steps</li><li>Recursive sum of weekly totals</li></ul>
+<pre><span class="t">int</span>[] steps = <span class="k">new</span> <span class="t">int</span>[<span class="s">7</span>];
+<span class="k">static</span> <span class="t">int</span> total(<span class="t">int</span>[] a, <span class="t">int</span> i) {
+  <span class="k">if</span> (i == a.length) <span class="k">return</span> <span class="s">0</span>;
+  <span class="k">return</span> a[i] + total(a, i + <span class="s">1</span>);
+}</pre>
+      </article>
+
+      <article data-layer-id="co4" data-layer-type="html" data-layer-name="CO4" class="co wide">
+        <div class="co-tag"><em>CO4</em><h3>Objects that Fail Safely</h3></div>
+        <ul><li>Classes <code>User</code>, <code>Workout</code> with private fields &amp; getters/setters</li><li>Abstract <code>Workout</code>; subclasses override <code>calories()</code> (polymorphism)</li><li>Custom <code>InvalidInputException</code> + <code>try-catch</code> keeps the app running</li></ul>
+<pre><span class="k">abstract class</span> <span class="t">Workout</span> {
+  <span class="k">abstract</span> <span class="t">double</span> calories();
+  <span class="t">void</span> setMinutes(<span class="t">int</span> m) <span class="k">throws</span> InvalidInputException {
+    <span class="k">if</span> (m <= <span class="s">0</span>) <span class="k">throw new</span> InvalidInputException(<span class="s">"Minutes must be > 0"</span>);
+    <span class="k">this</span>.minutes = m;
+  }
+}</pre>
+      </article>
+
+      <article data-layer-id="co5" data-layer-type="html" data-layer-name="CO5" class="co wide">
+        <div class="co-tag"><em>CO5</em><h3>Strings, Library Algorithms &amp; Files</h3></div>
+        <ul><li>String parsing with <code>split()</code>, <code>equalsIgnoreCase()</code>, <code>format()</code></li><li><code>ArrayList</code> + <code>Collections.sort</code> / <code>Comparator</code> to rank sessions</li><li>Save &amp; load workouts with <code>BufferedWriter</code> / <code>BufferedReader</code></li></ul>
+<pre>list.sort(Comparator.comparingDouble(Workout::calories).reversed());
+<span class="k">try</span> (BufferedWriter bw = Files.newBufferedWriter(path)) {
+  <span class="k">for</span> (Workout w : list)
+    bw.write(String.join(<span class="s">","</span>, w.type(), w.date(), <span class="s">""</span> + w.calories()) + <span class="s">"\n"</span>);
+} <span class="k">catch</span> (IOException e) { System.out.println(<span class="s">"Save failed"</span>); }</pre>
+      </article>
+    </div>
+
+    <div class="row3">
+      <section data-layer-id="future" data-layer-type="html" data-layer-name="Future scope">
+        <h2 class="sh"><span class="n">04</span>Future Scope</h2>
+        <ul class="fs-list">
+          <li><b>GUI &amp; mobile app</b>JavaFX desktop UI and an Android version</li>
+          <li><b>Wearable sync</b>Import steps and heart rate from smartwatches</li>
+          <li><b>Database storage</b>Move from CSV files to MySQL / SQLite</li>
+          <li><b>Charts &amp; insights</b>Graphs of weekly and monthly progress</li>
+          <li><b>Smart suggestions</b>Workout and diet plans based on goals</li>
+          <li><b>Multi-user &amp; cloud</b>Login, backup and sharing with friends</li>
+        </ul>
+      </section>
+
+      <section data-layer-id="conclusion" data-layer-type="html" data-layer-name="Conclusion" class="concl">
+        <h2 class="sh"><span class="n">05</span>Conclusion</h2>
+        <p class="body">The Personal Fitness Tracker turns a real everyday problem into a working Java program. It brings together every course outcome — structured problem solving, control flow, modular methods with recursion and arrays, safe object-oriented design with exceptions, and string handling, library algorithms and file storage.</p>
+        <p class="body">The result is a reliable, easy-to-use tool with a persistent fitness history and clear progress feedback — a solid base for future GUI, database and wearable features.</p>
+      </section>
+    </div>
+
+  </div>
+</div>
+<script>
+(function(){
+  var canvas=document.querySelector('.poster-canvas'); var W=1760,H=2489;
+  function fit(){var s=Math.min(window.innerWidth/W,window.innerHeight/H);canvas.style.transform='translate(-50%,-50%) scale('+s+')';}
+  fit(); window.addEventListener('resize',fit);
+})();
+</script>
+</body></html>
